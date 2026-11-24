@@ -1,0 +1,48 @@
+54. Pesquisa - Arquitetura
+
+Camada			|Responsabilidade																					   |
+________________|______________________________________________________________________________________________________|
+Controller		|É a porta de entrada da aplicação. Recebe as requisições HTTP do cliente, valida os dados de entrada, |
+ 				|repassa o processamento para a camada de serviço e devolve a resposta adequada.					   |
+________________|______________________________________________________________________________________________________|
+Service			|Contém as regras de negócio da aplicação. Realiza cálculos, validações complexas, orquestra chamadas  |	
+				|entre diferentes repositórios e garante que as operações sigam os requisitos do sistema antes de	   |
+				|persistir ou retornar os dados.																	   |
+________________|______________________________________________________________________________________________________|
+Repository		|É a camada de acesso e persistência de dados. Comunica-se diretamente com o banco de dados para	   |
+				|executar operações de consulta, inserção, atualização e exclusão (CRUD), abstraindo comandos SQL.	   |
+________________|______________________________________________________________________________________________________|
+
+55. Pesquisa — IoC e DI
+Diferença entre Inversão de Controle(IoC) e Injeção de Dependência (DI):
+- IoC: É o princípio arquitetural mais amplo em que o controle da criação, gerenciamento e ciclo de vida dos objetos é
+transferido do código do programador para um contêiner ou framework. Em vez de o seu código controlar o fluxo e instanciar
+classes manualmente, o framework assume essa responsabilidad.
+- DI: É o padrão de projeto específico que implementa a IoC. Consiste no mecanismo pelo qual o contêiner fornece
+automaticamente as dependências necessárias para uma classe, sem que a própria classe precise criá-las.
+
+Por que o QuartoController não precisa executar new QuartoService()?
+Porque a classe QuartoService está anotada com @Service, o que a registra como um Bean gerenciado pelo contêiner do Spring.
+Quando o QuartoController precisa dessa dependência, o Spring utiliza a Injeção de Dependência para localizar a instância já
+criada de QuartoService na memória e entregá-la automaticamente ao controlador, eliminando o acoplamento forte causado pelo
+operador new.
+
+56. Pesquisa — servidor embutido
+Por que não precisamos instalar manualmente um servidor Tomcat para executar essa aplicação?
+Porque o Spring Boot adota o conceito de servidor embutido. Ao adicionar a dependência spring-boot-starter-web ao projeto,
+o Apache Tomcat já vem empacotado diretamente dentro do próprio arquivo .jar da aplicação. Dessa forma, ao executar o método
+main() da classe principal, o Spring Boot inicializa e configura o servidor web internamente na memória (por padrão na porta
+8080), dispensando a instalação externa de um servidor de aplicação e a geração de arquivos .war.
+
+57. Pesquisa — auto-configuração
+O que significa auto-configuration no Spring Boot?
+É o mecanismo inteligente (ativado pela anotação @SpringBootApplication / @EnableAutoConfiguration) que analisa as bibliotecas
+presentes no classpath e as classes do projeto para configurar automaticamente os beans e recursos necessários, seguindo a
+filosofia de "convenção sobre configuração" sem exigir arquivos XML ou classes de configuração manuais.
+Duas configurações realizadas automaticamente pelo Spring Boot neste projeto:
+1. Configuração do servidor web e Spring MVC (DispatcherServlet): Ao detectar o spring-boot-starter-web, o Spring Boot
+configurou automaticamente o servidor Tomcat embutido (na porta 8080) e o DispatcherServlet para rotear as requisições HTTP
+para os endpoints mapeados como GET /quartos.
+2. Serialização e desserialização JSON (Jackson): Ao encontrar a biblioteca Jackson no classpath, o Spring Boot configurou
+automaticamente os conversores HTTP para transformar objetos Java (como a lista de Quarto) em respostas JSON sem necessidade
+de configuração manual.
