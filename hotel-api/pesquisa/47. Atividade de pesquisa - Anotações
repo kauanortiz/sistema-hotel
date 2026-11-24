@@ -1,0 +1,34 @@
+@SpringBootAppication: É utilizada na classe principal de inicialização do projeto Java.
+Serve para habilitar a configuração automática, a varredura de componentes e marca a classe
+como ponto de entrada da aplicação Spring Boot.
+
+@RestController: É utilizada em classes responsáveis por expor endpoints de uma API REST. Serve para
+indicar que a classe é um controlador web cujos métodos retornam dados diretamente no corpo da
+resposta (geralmente em JSON ou XML).
+
+@RequestMapping: É utilizada em classes controladoras ou diretamente em seus métodos. Serve para
+mapear requisições HTTP para classes ou métodos específicos do controlador.
+
+@GetMapping: É utilizada em métodos dentro de uma classe controladora. Serve para mapear requisições
+HTTP do tipo GET para um método específico, usado geralmente para consultar e retornar dados.
+
+@PostMapping: É utilizada em métodos dentro de uma classe controladora. Serve para mapear requisições
+HTTP do tipo POST para um método específico, utilizado para criar ou enviar novos recursos ao servidor.
+
+@PutMapping: É utilizada em métodos dentro de uma classe controladora. Serve para mapear requisições
+HTTP do tipo PUT para um método específico, usado para atualizar completamente um recurso existente.
+
+@DeleteMapping: É utilizada em métodos dentro de uma classe controladora. Serve para mapear requisições
+HTTP do tipo DELETE para um método específico, destinado à remoção de um recurso no servidor.
+
+@PathVariable: É utilizada nos parâmetros de um método de endpoint dentro de um controlador. Serve para
+extrair valores dinâmicos embutidos diretamente no caminho da URL e os vincula a uma variável Java.
+
+@RequestParam: É utilizada nos parâmetros de um método de endpoint dentro de um controlador. Serve para
+capturar parâmetros de consulta enviados na URL após o ponto de interrogação para uso no método.
+
+@RequestBody: É utilizada nos parâmetros de um método de endpoint dentro de um controlador. Serve para
+converter automaticamente o corpo da requisição HTTP em um objeto Java correspondente.
+
+@Service: É utilizada em classes da camada de négocios da aplicação. Serve para marcar a classe como
+um componente gerenciado pelo Spring (Bean) especializado em conter as regras de negócio do sistema.

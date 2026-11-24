@@ -1,0 +1,116 @@
+2. O que é Spring?
+R.: Spring é um Framework Java para construir aplicações, baseado em injeção de dependência. Seu núcleo é um contêiner que cria
+os objetos da aplicação, conecta uns aos outros e controla o ciclo de vida deles. Em volta desse núcleo existe um ecossistema de
+módulos para web, banco de dados, segurança e outros.
+O Spring procura resolver problemas como fortes acoplamentos, evitando implementações concretas, procura diminuir a dificuldade 
+de testes e melhorar a organização em sistemas grandes.
+Esse Framework trabalha com Inversão de Controle (IoC) e Injeção de Dependência (DI), onde Inversão de Controle é um princípio
+de projeto em que o controle sobre a criação e a ligação dos objetos é transferido da classe para um agente externo, no caso o
+contêiner do Spring. Já a Injeção de Dependência é o mecanismo concreto que realiza a Inversão de Controle: o Spring injeta nas
+classes os objetos de que elas dependem.
+Beans são objetos instanciados, configurados e gerenciados pelo contêiner do Spring. Se o objeto for criado manualmente com "new",
+ele não é um bean. Se o Spring cria, ele é. Já o contêiner, dizendo a grosso modo, é a "caixa" que guarda e gerencia todos os beans.
+
+3. O que é Spring Boot?
+R.: O Spring Boot é uma extensão do Spring Framework que permite criar aplicações autônomas (standalone) e prontas para produção com
+muito pouco esforço de configuração. Ele segue a filosofia de "convenção sobre configuração", ou seja, assume padrões sensatos e você
+só configura o que quiser mudar.
+A auto-configuração é o recurso central do Boot, sendo específica do Spring Boot e não existindo em aplicações Spring tradicionais.
+O Boot examina o que há no projeto e decide o que configurar. Ele considera as bibliotecas no classpath, os beans já criados pela
+aplicação, as propriedades de configuração, o ambiente e as condições definidas nas classes de auto-configuração.
+Já os starters são pacotes que reúnem tudo o que é necessário para um recurso, sem a necessidade de procurar cada biblioteca.
+Uma vantagem apresentada pelo Spring Boot são os servidores embutidos, trazendo Tomcat, Jetty ou Undertow, para rodar aplicações
+web sem fazer deploy em um servidor externo. No Spring tradicional, havia a necessidade de instalar um servidor e entregar a ele um
+arquivo WAR. No Boot, o servidor é uma bibioteca dentro da própria aplicação.
+O Boot segue a convenção sobre configuração, evitando a necessidade de escrever XML nem declarar manualmente beans de infraestrutura.
+Por fim, o Spring Boot permite a execução de aplicações standalone, ou seja, aplicações que rodam sozinhas, sem depender de um servidor
+instalado. O Boot pode empacotar o servidor dentro do JAR da aplicação, o que permite implantações independentes.
+
+5. O que é uma API?
+R.: API significa Application Programming Interface (Interface de Programação de Aplicação), e "aplicação" aqui é qualquer software com
+uma função distinta.
+- Application: o software ou sistema.
+- Programming: feita para ser usada por programas.
+- Interface: o ponto de contato entre dois sistemas. Pode ser vista como um contrato de serviço entre duas aplicações.
+Em termos simples, uma API é um conjunto de regras que permite que dois softwares conversem entre si.
+Uma analogia que ajuda na compreensão do conceito é a analogia do restaurante: você (cliente) não entra na cozinha. Faz o pedido ao garçom
+(a API), a cozinha (o servidor) prepara e o garçom traz o prato. Isso aparece também nas fontes: você não sabe onde o sistema busca a
+informação, só sabe como falar com a API.
+
+O que é REST?
+REST significa Representational State Transfer (Transferência Representacional de Estado). Uma API REST é uma API que segue os princípios de
+design do estilo de arquitetura REST. REST não é um protocolo nem uma tecnologia, e sim um conjunto de regras de projeto. Clientes e
+servidores trocam dados usando HTTP.
+
+O que caracteriza uma API REST?
+- Arquitetura cliente-servidor
+A arquitetura é baseada em clientes, servidores e recursos, com solicitações via protocolo HTTP. Cliente e servidor devem ser independentes um
+do outro; o cliente só precisa conhecer a URI do recurso pedido.
+- Ausência de estado (stateless)
+O servidor não guarda dados do cliente entre as requisições. Por isso, cada requisição precisa trazer todas as informações necessárias para ser
+processada, sem depender de sessão no servidor.
+- Interface uniforme
+A interface uniforme permite que cliente e servidor evoluam de forma independente. Cada informação pertence a um único identificador (URI). Um
+mesmo dado, como o nome de um usuário, deve pertencer a apenas uma URI.
+- Uso dos métodos HTTP com significado
+Uma API REST usa GET para recuperar, POST para criar, PUT para atualizar e DELETE para excluir um registro.
+- Cache
+A API deve permitir cache, o que otimiza as requisições e respostas entre cliente e servidor.
+- Sistema em camadas
+Chamadas e respostas podem passar por várias camadas, então não se deve assumir que cliente e servidor se conectam diretamente.
+
+Conceitos
+- Recurso
+É qualquer entidade que a API expõe: um aluno, um produto, um pedido. Cada recurso tem um identificador único (URI). Na REST, pensa-se em
+substantivos (recursos), e não em verbos (ações).
+- Endpoint
+É o ponto de acesso: a combinação de URL + método HTTP.
+- HTTP
+É o protocolo de comunicação da Web. Define o formato das mensagens e os métodos (GET, POST, PUT, DELETE), os cabeçalhos (headers) e os códigos
+de status. Cabeçalhos de requisição e resposta, junto com os códigos de status convencionais, são usados em APIs REST bem projetadas.
+- Requisição
+É a mensagem enviada pelo cliente. Tem: Método (GET, POST...), URL (endpoint), cabeçalhos, body.
+- Resposta
+É a mensagem devolvida pelo servidor. Tem: Código de status (200, 404), cabeçalhos, body (geralmente com os dados em JSON).
+- JSON
+JavaScript Object Notation é um formato de texto leve para representar dados em pares chave-valor. É legível por pessoas e por máquinas, e qualquer
+linguagem consegue ler. As APIs REST podem ser feitas em praticamente qualquer linguagem e aceitam vários formatos de dados, mas o JSON é o mais
+usado.
+
+6. Métodos HTTP
+R.: Os métodos HTTP definem a ação desejada a ser executada em um recurso específico dentro de uma arquitetura web.
+- GET: Solicita a representação de um recurso específico ou de uma lista de recursos. Requisições GET devem apenas recuperar dados e não devem
+alterar o estado do servidor. A operação do CRUD relacionada ao GET é o Read.
+- POST: Envia dados ao servidor para criar um novo recurso. As informações trafegam no corpo da requisição. Executar o mesmo POST várias vezes
+geralmente resulta na criação de múltiplos registros duplicados. A operação relacionada é o Create.
+- PUT: Substitui completamente um recurso existente pelos dados enviados no corpo da requisição. Enviar a mesma requisição PUT repetidas vezes
+produzirá exatamente o mesmo resultado final no servidor. A operação relacionada é o Update.
+- DELETE: Exclui o recurso especificado pela URL. Após a primeira exclusão bem-sucedida, chamadas subsequentes para o mesmo recurso mantém o
+estado de removido. Obviamente, a operação relacionada é o Delete.
+
+7. Status HTTP
+R.: Os códigos de status HTTP são respostas padronizadas enviadas pelo servidor para indicar o resultado do processamento de uma requisição
+feita pelo cliente.
+- 200 OK: A requisição foi processada com êxito e o servidor retornou o conteúdo solicitado no corpo da resposta.
+Exemplo no SistemaHotel: Alguém consulta a lista de quartos disponíveis e o sistema retorna o JSON com os quartos encontrados.
+- 201 Created: A requisição foi bem-sucedida e resultou na criação de um novo recurso no banco de dados. Geralmente retorna os dados criados
+e o cabeçalho Location.
+Exemplo: Um cliente finaliza uma nova reserva e o sistema grava o agendamento no banco, retornando os dados da reserva gerada com seu novo ID.
+- 204 No Content: O servidor processou a requisição com sucesso, mas não há necessidade de retornar nenhum dado no corpo da resposta.
+Exemplo: Alguém exclui um registro de hóspede duplicado ou atualiza os dados de um quarto sem precisar receber o objeto de volta.
+- 400 Bad Request: O servidor não conseguiu processar a requisição devido a um erro de sintaxe, dados malformados ou falha de validação
+enviada pelo cliente.
+Exemplo: O usuário tenta criar uma reserva informando uma data de check-out anterior à data de check-in, ou deixa de enviar o CPF obrigatório
+do hóspede.
+- 404 Not Found: O servidor está acessível, mas o recurso específico ou a rota solicitada na URL não existe no sistema.
+Exemplo: Alguém tenta buscar ou cancelar uma reserva que não existe ou já foi apagada, ou digita uma URL incorreta na API.
+- 500 Internal Server Error: Ocorreu uma falha inesperada e não tratada no código do servidor ou na infraestrutura, impedindo a conclusão da
+requisição.
+Exemplo: Durante o fechamento da conta, o servidor perde a conexão com o banco de dados ou ocorre uma exceção não tratada no código da API.
+
+8. JSON - Qual biblioteca é normalmente utilizada pelo Spring Boot para conversão entre objetos Java e JSON?
+R.: A biblioteca padrão utilizada pelo Spring Boot para conversão (serialização e desserialização) entre objetos Java e JSON é o Jackson.
+Na serialização (Objeto Java -> JSON), ao retornar um objeto Java em um método anotado com @RestController ou @ResponseBody, o Spring Boot
+utiliza o ObjectMapper do Jackson por baixo dos panos para transformar atributos da classe em propriedades JSON.
+Já na desserialização (JSON -> Objeto Java), ao receber uma requisição HTTP contendo um JSON e usar a anotação @RequestBody em um parâmetro
+do controller, o Jackson lê o corpo da requisição e instacia o objeto Java correspondente.
