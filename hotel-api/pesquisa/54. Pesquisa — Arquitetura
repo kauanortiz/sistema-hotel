@@ -1,0 +1,12 @@
+Camada			|Responsabilidade																					   |
+________________|______________________________________________________________________________________________________|
+Controller		|É a porta de entrada da aplicação. Recebe as requisições HTTP do cliente, valida os dados de entrada, |
+ 				|repassa o processamento para a camada de serviço e devolve a resposta adequada.					   |
+________________|______________________________________________________________________________________________________|
+Service			|Contém as regras de negócio da aplicação. Realiza cálculos, validações complexas, orquestra chamadas  |	
+				|entre diferentes repositórios e garante que as operações sigam os requisitos do sistema antes de	   |
+				|persistir ou retornar os dados.																	   |
+________________|______________________________________________________________________________________________________|
+Repository		|É a camada de acesso e persistência de dados. Comunica-se diretamente com o banco de dados para	   |
+				|executar operações de consulta, inserção, atualização e exclusão (CRUD), abstraindo comandos SQL.	   |
+________________|______________________________________________________________________________________________________|
